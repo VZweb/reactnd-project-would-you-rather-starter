@@ -19,7 +19,7 @@ class Login extends React.Component{
       
         return(       
             <div className="panel">
-            <h1>Welcome to the Would you Rather App !</h1>
+            <h1>Welcome</h1>
             <form className="panel-body" onSubmit={this.handleLogin}>
                 <div className="react-redux-icon"></div>
                 <h2 className="center">Login</h2>

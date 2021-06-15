@@ -1,10 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import React, { Component }  from 'react'
+import React, { Component, Fragment } from 'react'
 import Login from './pages/Login'
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { handleInitialData } from './actions/shared'
 import { connect } from 'react-redux'
+import LoadingBar from 'react-redux-loading'
+import Nav from './Nav'
 
 class App extends Component {
 
@@ -14,27 +15,41 @@ class App extends Component {
  render() {
 
    return (
-     <BrowserRouter>   
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <Route path="/login" component={Login} />
-    </div>
+  //    <BrowserRouter>   
+  //   <div className="App">
+  //     <header className="App-header">
+  //       <img src={logo} className="App-logo" alt="logo" />
+  //       <p>
+  //         Edit <code>src/App.js</code> and save to reload.
+  //       </p>
+  //       <a
+  //         className="App-link"
+  //         href="https://reactjs.org"
+  //         target="_blank"
+  //         rel="noopener noreferrer"
+  //       >
+  //         Learn React
+  //       </a>
+  //     </header>
+  //     <Route path="/login" component={Login} />
+  //   </div>
 
 
-   </BrowserRouter>
+  //  </BrowserRouter>
+  <Router>
+        <Fragment>
+          <LoadingBar />
+          <div className='container'>
+            <Nav />
+            {this.props.loading === true
+              ? null
+              : <div>
+                  <Route path='/' exact component={Login} />
+                  <Route path='/login' component={Login} />
+                </div>}
+          </div>
+        </Fragment>
+      </Router>
    ) 
  }
 }
