@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { handleInitialData } from './actions/shared'
 import { connect } from 'react-redux'
 import LoadingBar from 'react-redux-loading'
-import Nav from './Nav'
+import Home from './pages/Home'
+import loginUser from './reducers/loginUser';
 
 class App extends Component {
 
@@ -13,7 +14,6 @@ class App extends Component {
     this.props.dispatch(handleInitialData())
   }
  render() {
-
    return (
   //    <BrowserRouter>   
   //   <div className="App">
@@ -40,11 +40,10 @@ class App extends Component {
         <Fragment>
           <LoadingBar />
           <div className='container'>
-            <Nav />
             {this.props.loading === true
               ? null
               : <div>
-                  <Route path='/' exact component={Login} />
+                  <Route path='/' exact component={Home} />
                   <Route path='/login' component={Login} />
                 </div>}
           </div>
@@ -54,9 +53,9 @@ class App extends Component {
  }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps ({ loginUser }) {
   return {
-    loading: authedUser === null
+    loading: loginUser === null
   }
 }
 
