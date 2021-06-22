@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import Login from './Login';
 import Nav from '../Nav'
+import QuestionsTabs from '../components/QuestionTabs'
 
 class Home extends Component {
     
@@ -14,7 +15,7 @@ class Home extends Component {
    return(
        <div>
     <Nav />
-    <div>The user {loginUser} is logged in</div>
+    <QuestionsTabs loginUser />
     </div>
     )
     }
