@@ -1,13 +1,14 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -31,7 +32,7 @@ function Question(props) {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.author} asks: 
+            {props.author} asks:
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             Would you rather...
@@ -39,18 +40,20 @@ function Question(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          View Question
-        </Button>
+        <Link to={`/questions/${props.question.id}`}>
+          <Button size="small" color="primary">
+            View Question
+          </Button>
+        </Link>
       </CardActions>
     </Card>
   );
 }
 
 function mapStateToProps({ users }, ownProps) {
-    return {
-        user: users[ownProps.author]
-    };
-  }
-  
-  export default connect(mapStateToProps)(Question);
+  return {
+    user: users[ownProps.author],
+  };
+}
+
+export default connect(mapStateToProps)(Question);

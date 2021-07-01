@@ -35,9 +35,9 @@ class Nav extends React.Component{
             </NavLink>
           </li> */}
           <li>
-            <div  onClick={()=>this.logoutHandler()}>
+            {/* <div  onClick={()=>this.logoutHandler()}>
               Logout {loginUser}
-            </div>
+            </div> */}
           </li>
         </ul>
       </nav>

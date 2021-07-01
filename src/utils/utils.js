@@ -18,3 +18,8 @@ function filter_questionsWithResponses(question) {
     return question.optionOne.votes.length > 0 || question.optionTwo.votes.length > 0;
 }
 
+export function isQuestionAnswered (optionOne, optionTwo, user) {
+    let combinedOptions = optionOne.votes.concat(optionTwo.votes)
+    return combinedOptions.includes(user)
+}
+

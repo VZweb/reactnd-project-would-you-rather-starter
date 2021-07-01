@@ -14,7 +14,6 @@ class Home extends Component {
    }
    return(
        <div>
-    <Nav />
     <QuestionsTabs loginUser />
     </div>
     )

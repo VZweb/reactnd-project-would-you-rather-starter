@@ -74,20 +74,16 @@ function QuestionsTabs(props) {
       <TabPanel value={value} index={0}>
         Unanswered Questions
         <div>
-          {
-            props.answeredQuestionsArr.map(question => {
-              return <Question author={question.author} />
-            })
-          }
+          {props.unansweredQuestionsArr.map((question) => {
+            return <Question author={question.author} question={question} />;
+          })}
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div>
-        {
-            props.unansweredQuestionsArr.map(question => {
-              return <Question author={question.author}/>
-            })
-          }
+          {props.answeredQuestionsArr.map((question) => {
+            return <Question author={question.author} question={question} />;
+          })}
         </div>
       </TabPanel>
     </div>
