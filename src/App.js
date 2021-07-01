@@ -9,6 +9,8 @@ import LoadingBar from 'react-redux-loading'
 import Home from './pages/Home'
 import loginUser from './reducers/loginUser';
 import Nav from './Nav'
+import AddQuestion from './pages/AddQuestion';
+import Leaderboard from './pages/Leaderboard';
 
 class App extends Component {
 
@@ -49,6 +51,8 @@ class App extends Component {
                   <Route path='/' exact component={Home} />
                   <Route path='/login' component={Login} />
                   <Route path="/questions/:question_id" component={ViewQuestion} />
+                  <Route path="/add" component={AddQuestion} />
+                  <Route path="/leaderboard" component={Leaderboard} />
                 </div>}
           </div>
         </Fragment>
