@@ -22,44 +22,63 @@ const useStyles = makeStyles({
 function Leaderboard(props) {
   const classes = useStyles();
 
+  const usersArrSorted = Object.values(props.users).sort(function (a, b) {
+    let scoreA = Object.keys(a.answers).length;
+    let scoreB = Object.keys(b.answers).length;
+    if (scoreA > scoreB) {
+      return -1;
+    } else if (scoreA < scoreB) {
+      return 1;
+    }
+    return 0;
+  });
+
   return (
     <div>
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={
-              "https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Avatar-Teaser-Poster.jpg/220px-Avatar-Teaser-Poster.jpg"
-            }
-            title="user avatar"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h6" component="h2">
-              Vasilis Z
-            </Typography>
+      {usersArrSorted.map((user) => {
+        const noOfAnsweredQuestions = Object.keys(user.answers).length;
+        const noOfCreatedQuestions = Object.keys(user.questions).length;
+        const totalQuestions = noOfAnsweredQuestions + noOfCreatedQuestions;
+        return (
+          <Card className={classes.root}>
+            <CardActionArea>
+              <CardMedia
+                className={classes.media}
+                image={
+                  "https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Avatar-Teaser-Poster.jpg/220px-Avatar-Teaser-Poster.jpg"
+                }
+                title="user avatar"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h6" component="h2">
+                  {user.id}
+                </Typography>
 
-            <Typography gutterBottom variant="h7" component="h2">
-              Answered Questions: 4
-            </Typography>
+                <Typography gutterBottom variant="h7" component="h2">
+                  Answered Questions: {noOfAnsweredQuestions}
+                </Typography>
 
-            <Typography gutterBottom variant="h7" component="h2">
-              Created Questions: 1
-            </Typography>
-            <Divider />
+                <Typography gutterBottom variant="h7" component="h2">
+                  Created Questions: {noOfCreatedQuestions}
+                </Typography>
+                <Divider />
 
-            <Typography gutterBottom variant="h8" component="h3">
-              Score:
-              <Avatar>5</Avatar>
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions></CardActions>
-      </Card>
+                <Typography gutterBottom variant="h8" component="h3">
+                  Score:
+                  <Avatar>{totalQuestions}</Avatar>
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions></CardActions>
+          </Card>
+        );
+      })}
     </div>
   );
 }
 
 function mapStateToProps({ loginUser, users }) {
+  console.log("users are: ", users);
   return {
     loginUser,
     users,
