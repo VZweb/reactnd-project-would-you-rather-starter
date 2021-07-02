@@ -161,3 +161,9 @@ li {
   font-size: 20px;
   color: #C3392A;
 }
+
+.Login-panel {
+  margin: auto;
+  width: 50%;
+  margin-top: 70px;
+}

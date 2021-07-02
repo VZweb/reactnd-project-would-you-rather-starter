@@ -45,6 +45,10 @@ function AddQuestion(props) {
     props.history.push("/");
   }
 
+  if (!props.loginUser.length) {
+    props.history.push("/");
+  }
+
   return (
     <div>
       <Card className={classes.root}>

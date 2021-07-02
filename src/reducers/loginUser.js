@@ -6,7 +6,7 @@ export default function loginUser(state = {}, action){
         case AUTHORIZE_USER: 
             return action.user;
         case LOGOUT_USER:
-            return {loginUser:''};
+            return '';
         default:
             return state;
     }

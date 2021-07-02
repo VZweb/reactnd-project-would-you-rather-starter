@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import Avatar from "@material-ui/core/Avatar";
 import Divider from "@material-ui/core/Divider";
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
   root: {
@@ -33,8 +34,12 @@ function Leaderboard(props) {
     return 0;
   });
 
+  if (!props.loginUser.length) {
+    props.history.push("/");
+  }
+
   return (
-    <div>
+    <div className="Login-panel">
       {usersArrSorted.map((user) => {
         const noOfAnsweredQuestions = Object.keys(user.answers).length;
         const noOfCreatedQuestions = Object.keys(user.questions).length;
@@ -50,23 +55,27 @@ function Leaderboard(props) {
                 title="user avatar"
               />
               <CardContent>
-                <Typography gutterBottom variant="h6" component="h2">
+                <Typography gutterBottom variant="h7" component="h2">
                   {user.id}
                 </Typography>
-
-                <Typography gutterBottom variant="h7" component="h2">
+                <Grid container spacing={3}>
+                  <Grid item xs={9}>
+                  <Typography gutterBottom variant="h6" component="h2">
                   Answered Questions: {noOfAnsweredQuestions}
                 </Typography>
-
-                <Typography gutterBottom variant="h7" component="h2">
+                <Typography gutterBottom variant="h6" component="h2">
                   Created Questions: {noOfCreatedQuestions}
                 </Typography>
-                <Divider />
-
-                <Typography gutterBottom variant="h8" component="h3">
-                  Score:
-                  <Avatar>{totalQuestions}</Avatar>
-                </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                  <div>
+                  <Typography gutterBottom variant="h8" component="h3">
+                    <Avatar>{totalQuestions}</Avatar>
+                  </Typography>
+                </div>
+                  </Grid>
+                </Grid>                
+                
               </CardContent>
             </CardActionArea>
             <CardActions></CardActions>

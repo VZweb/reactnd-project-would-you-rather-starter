@@ -29,15 +29,10 @@ class Nav extends React.Component{
               Leaderboard
             </NavLink>
           </li>
-          {/* <li>
-            <NavLink to='/logout' activeClassName='active'>
-              Logout
-            </NavLink>
-          </li> */}
           <li>
-            {/* <div  onClick={()=>this.logoutHandler()}>
+            <NavLink to='/' activeClassName='inactive' onClick={()=>this.logoutHandler()}>
               Logout {loginUser}
-            </div> */}
+            </NavLink>
           </li>
         </ul>
       </nav>
