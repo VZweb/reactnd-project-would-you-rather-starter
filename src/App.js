@@ -7,7 +7,6 @@ import { handleInitialData } from "./actions/shared";
 import { connect } from "react-redux";
 import LoadingBar from "react-redux-loading";
 import Home from "./pages/Home";
-import loginUser from "./reducers/loginUser";
 import Nav from "./Nav";
 import AddQuestion from "./pages/AddQuestion";
 import Leaderboard from "./pages/Leaderboard";
@@ -19,31 +18,10 @@ class App extends Component {
   }
   render() {
     return (
-      //    <BrowserRouter>
-      //   <div className="App">
-      //     <header className="App-header">
-      //       <img src={logo} className="App-logo" alt="logo" />
-      //       <p>
-      //         Edit <code>src/App.js</code> and save to reload.
-      //       </p>
-      //       <a
-      //         className="App-link"
-      //         href="https://reactjs.org"
-      //         target="_blank"
-      //         rel="noopener noreferrer"
-      //       >
-      //         Learn React
-      //       </a>
-      //     </header>
-      //     <Route path="/login" component={Login} />
-      //   </div>
-
-      //  </BrowserRouter>
       <Router>
         <Fragment>
           <LoadingBar />
           <div className="container">
-            {console.log("loginUser is: ", this.props.loginUser)}
             {_.isEmpty(this.props.loginUser) ? "" : <Nav />}
             {this.props.loading === true ? null : (
               <div>

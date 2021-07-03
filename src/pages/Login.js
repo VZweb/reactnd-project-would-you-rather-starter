@@ -13,16 +13,10 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Container from "@material-ui/core/Container";
+import Divider from "@material-ui/core/Divider";
 
 function Login(props) {
   const [loggedInuser, setLoginUser] = React.useState("");
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    const { dispatch } = props;
-    dispatch(loginAction(loggedInuser));
-  };
 
   const selectUser = (event) => {
     const loggedInUser = event.target.value;
@@ -37,6 +31,7 @@ function Login(props) {
     },
     media: {
       height: 140,
+      backgroundSize: "contain",
     },
     formControl: {
       margin: theme.spacing(1),
@@ -49,53 +44,49 @@ function Login(props) {
   const classes = useStyles();
 
   return (
-    <div className="Login-panel">
-      {/* <h1>Welcome</h1>
-      <form className="panel-body" onSubmit={handleLogin}>
-        <div className="react-redux-icon"></div>
-        <h2 className="center">Login</h2>
-
-        <select onChange={(e) => selectUser(e.target.value)}>
-          <option>Select User</option>
-          {Object.values(props.users).map((user) => (
-            <option key={user.id} value={user.id}>
-              {user.name}
-            </option>
-          ))}
-        </select>
-        <button type="submit"> Submit </button>
-      </form> */}
-
+    <div className="Center-panel">
       <Container>
         <Card className={classes.root}>
           <CardActionArea>
             <CardMedia
               className={classes.media}
-              image={
-                "https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Avatar-Teaser-Poster.jpg/220px-Avatar-Teaser-Poster.jpg"
-              }
+              image={"https://image.flaticon.com/icons/png/512/189/189677.png"}
               title="user avatar"
             />
             <CardContent>
-              <Typography gutterBottom variant="h6" component="h2">
+              <Typography
+                gutterBottom
+                variant="h6"
+                component="h6"
+                align="center"
+              >
                 Welcome to Would you rather App!
               </Typography>
-              <Typography gutterBottom variant="h7" component="h2">
-                Login
-              </Typography>
-              <FormControl className={classes.formControl}>
-                <InputLabel id="demo-simple-select-label">Username</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={loggedInuser}
-                  onChange={selectUser}
-                >
-                  {Object.values(props.users).map((user) => (
-                    <MenuItem value={user.id}>{user.id}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
+              <Divider />
+              <div className="Login-text">
+                <Typography gutterBottom variant="h6" component="h3">
+                  Login
+                </Typography>
+              </div>
+              <div className="LoginForm-position">
+                <FormControl className={classes.formControl}>
+                  <InputLabel id="demo-simple-select-label">
+                    Username
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={loggedInuser}
+                    onChange={selectUser}
+                  >
+                    {Object.values(props.users).map((user) => (
+                      <MenuItem key={user.id} value={user.id}>
+                        {user.id}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              </div>
             </CardContent>
           </CardActionArea>
           <CardActions></CardActions>

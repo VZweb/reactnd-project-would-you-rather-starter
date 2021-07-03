@@ -14,24 +14,24 @@ class Nav extends React.Component{
     return (
       <nav className='nav'>
         <ul>
-          <li>
+          <li key="home">
             <NavLink to='/' exact activeClassName='active'>
               Home
             </NavLink>
           </li>
-          <li>
+          <li key="add">
             <NavLink to='/add' activeClassName='active'>
               Add
             </NavLink>
           </li>
-          <li>
+          <li key="leaderboard">
             <NavLink to='/leaderboard' activeClassName='active'>
               Leaderboard
             </NavLink>
           </li>
-          <li>
+          <li key="logout">
             <NavLink to='/' activeClassName='inactive' onClick={()=>this.logoutHandler()}>
-              Logout {loginUser}
+              {loginUser} (logout)
             </NavLink>
           </li>
         </ul>

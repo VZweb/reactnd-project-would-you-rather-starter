@@ -23,7 +23,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box p={3}>
-          <Typography>{children}</Typography>
+          <Typography component="span">{children}</Typography>
         </Box>
       )}
     </div>
@@ -71,31 +71,40 @@ function QuestionsTabs(props) {
           <Tab label="Answered Questions" {...a11yProps(1)} />
         </Tabs>
       </AppBar>
-      <TabPanel value={value} index={0}>
-        Unanswered Questions
-        <div>
+      <div className="Center-panel">
+        <TabPanel value={value} index={0} component={"span"}>
           {props.unansweredQuestionsArr.map((question) => {
-            return <Question author={question.author} question={question} />;
+            return (
+              <Question
+                key={question.id}
+                author={question.author}
+                question={question}
+              />
+            );
           })}
-        </div>
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        <div>
+        </TabPanel>
+      </div>
+      <div className="Center-panel">
+        <TabPanel value={value} index={1} component={"span"}>
           {props.answeredQuestionsArr.map((question) => {
-            return <Question author={question.author} question={question} />;
+            return (
+              <Question
+                key={question.id}
+                author={question.author}
+                question={question}
+              />
+            );
           })}
-        </div>
-      </TabPanel>
+        </TabPanel>
+      </div>
     </div>
   );
 }
 
-function mapStateToProps({ questions, users, loginUser }) {
+function mapStateToProps({ questions, loginUser }) {
   const answeredQuestionsArr = answeredQuestions(questions, loginUser);
   const unansweredQuestionsArr = unansweredQuestions(questions, loginUser);
 
-  // console.log("answeredQuestionsArr are: ", answeredQuestionsArr);
-  // console.log("UnansweredQuestionsArr are: ", unansweredQuestionsArr);
   return {
     answeredQuestionsArr,
     unansweredQuestionsArr,

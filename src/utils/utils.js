@@ -3,7 +3,16 @@ export function answeredQuestions (questions, user) {
 
     let filteredAnsweredQuestions = questionsArray.filter(question => question.optionOne.votes.includes(user) || question.optionTwo.votes.includes(user));
 
-    return filteredAnsweredQuestions
+    const filteredAnsweredQuestionsSorted = filteredAnsweredQuestions.sort(function (a, b) {
+        if (a.timestamp > b.timestamp) {
+          return -1;
+        } else if (a.timestamp < b.timestamp) {
+          return 1;
+        }
+        return 0;
+      });
+
+    return filteredAnsweredQuestionsSorted
 }
 
 export function unansweredQuestions (questions, user) {
@@ -11,7 +20,16 @@ export function unansweredQuestions (questions, user) {
 
     let filteredUnansweredQuestions = questionsArray.filter(question => !question.optionOne.votes.includes(user) && !question.optionTwo.votes.includes(user));
 
-    return filteredUnansweredQuestions
+    const filteredUnnsweredQuestionsSorted = filteredUnansweredQuestions.sort(function (a, b) {
+        if (a.timestamp > b.timestamp) {
+          return -1;
+        } else if (a.timestamp < b.timestamp) {
+          return 1;
+        }
+        return 0;
+      });
+
+    return filteredUnnsweredQuestionsSorted
 }
 
 function filter_questionsWithResponses(question) {

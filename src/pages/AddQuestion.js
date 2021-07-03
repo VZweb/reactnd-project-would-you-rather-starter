@@ -19,6 +19,7 @@ const useStyles = makeStyles({
   },
   media: {
     height: 140,
+    backgroundSize: "contain",
   },
 });
 
@@ -50,14 +51,12 @@ function AddQuestion(props) {
   }
 
   return (
-    <div>
+    <div className="Center-panel">
       <Card className={classes.root}>
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={
-              "https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Avatar-Teaser-Poster.jpg/220px-Avatar-Teaser-Poster.jpg"
-            }
+            image={"https://image.flaticon.com/icons/png/512/187/187704.png"}
             title="user avatar"
           />
           <CardContent>
@@ -73,9 +72,12 @@ function AddQuestion(props) {
                   value={enteredOptionOne}
                   onChange={(event) => handleOptionOneEnter(event.target.value)}
                 />
-                <Typography gutterBottom variant="h6" component="h2">
-                  or
-                </Typography>
+                <div className="Or-position">
+                  <Typography gutterBottom variant="h6" component="h2">
+                    or
+                  </Typography>
+                </div>
+
                 <TextField
                   id="enterOptionTwo"
                   label="Enter option 2 here"

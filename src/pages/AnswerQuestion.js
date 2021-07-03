@@ -1,20 +1,17 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
-import { isQuestionAnswered } from "../utils/utils";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
-import Button from '@material-ui/core/Button';
-import { handleAddAnswer } from '../actions/questions'
+import Button from "@material-ui/core/Button";
+import { handleAddAnswer } from "../actions/questions";
 
 const useStyles = makeStyles({
   root: {
@@ -22,6 +19,7 @@ const useStyles = makeStyles({
   },
   media: {
     height: 140,
+    backgroundSize: "contain",
   },
 });
 
@@ -30,58 +28,62 @@ function AnswerQuestion(props) {
   const { question, user, loginUser } = props;
   const { optionOne, optionTwo, id } = question;
 
-  const [answer, setAnswer] = React.useState('');
-  const [qid, setId] = React.useState('');
+  const [answer, setAnswer] = React.useState("");
+  const [qid, setId] = React.useState("");
 
   const handleRadioChange = (event) => {
     setAnswer(event.target.value);
-    setId(id)
+    setId(id);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.handleAddAnswer(qid, answer, loginUser)
-    console.log("qid is: ", qid)
-    console.log("answer is: ", answer)
+    props.handleAddAnswer(qid, answer, loginUser);
   };
 
   return (
-    <div>
+    <div className="Center-panel">
       <Card className={classes.root}>
-        <CardActionArea>
           <CardMedia
             className={classes.media}
-            image={
-              "https://upload.wikimedia.org/wikipedia/en/thumb/b/b0/Avatar-Teaser-Poster.jpg/220px-Avatar-Teaser-Poster.jpg"
-            }
+            image={props.user.avatarURL}
             title="user avatar"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom variant="h5" component="div">
               {user.id} asks:
             </Typography>
-            {/* <Typography variant="body2" color="textSecondary" component="p">
-              
-            </Typography> */}
             <form onSubmit={handleSubmit}>
-              <FormControl component="fieldset" className={classes.formControl}
-              >
-                <FormLabel component="legend">
-                Would you rather:
-                </FormLabel>
-                <RadioGroup aria-label="quiz" name="quiz" value={answer} onChange={handleRadioChange}
+              <FormControl component="fieldset" className={classes.formControl}>
+                <FormLabel component="legend">Would you rather:</FormLabel>
+                <RadioGroup
+                  aria-label="quiz"
+                  name="quiz"
+                  value={answer}
+                  onChange={handleRadioChange}
                 >
-                  <FormControlLabel value="optionOne"  control={<Radio />} label={optionOne.text} />
-                  <FormControlLabel value="optionTwo"  control={<Radio />} label={optionTwo.text} />
+                  <FormControlLabel
+                    value="optionOne"
+                    control={<Radio />}
+                    label={optionOne.text}
+                  />
+                  <FormControlLabel
+                    value="optionTwo"
+                    control={<Radio />}
+                    label={optionTwo.text}
+                  />
                 </RadioGroup>
-                <Button type="submit" variant="outlined" color="primary" className={classes.button} >
+                <Button
+                  type="submit"
+                  variant="outlined"
+                  color="primary"
+                  className={classes.button}
+                >
                   Submit
                 </Button>
               </FormControl>
             </form>
           </CardContent>
-        </CardActionArea>
-        <CardActions></CardActions>
       </Card>
     </div>
   );
@@ -96,8 +98,9 @@ function mapStateToProps({ users, questions, loginUser }, ownProps) {
   };
 }
 
-const mapDispatchToProps = dispatch => ({
-    handleAddAnswer: (id, answer, loginUser) => dispatch(handleAddAnswer(id, answer, loginUser))
-})
+const mapDispatchToProps = (dispatch) => ({
+  handleAddAnswer: (id, answer, loginUser) =>
+    dispatch(handleAddAnswer(id, answer, loginUser)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AnswerQuestion);

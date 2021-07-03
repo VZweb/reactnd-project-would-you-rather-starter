@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import _ from "lodash";
 
 const useStyles = makeStyles({
   root: {
@@ -16,6 +17,7 @@ const useStyles = makeStyles({
   },
   media: {
     height: 140,
+    backgroundSize: "contain",
   },
 });
 
@@ -23,30 +25,31 @@ function Question(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={props.user.avatarURL}
-          title="user avatar"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.author} asks:
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Would you rather...
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Link to={`/questions/${props.question.id}`}>
+    <Link to={`/questions/${props.question.id}`}>
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardMedia
+            className={classes.media}
+            image={props.user.avatarURL}
+            title="user avatar"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component={"div"}>
+              {props.author} asks:
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component={"div"}>
+              Would you rather...{" "}
+              {_.truncate(props.question.optionOne.text, { length: 16 })} ...
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
           <Button size="small" color="primary">
             View Question
           </Button>
-        </Link>
-      </CardActions>
-    </Card>
+        </CardActions>
+      </Card>
+    </Link>
   );
 }
 
