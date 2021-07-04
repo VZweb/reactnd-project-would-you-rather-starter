@@ -1,8 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
@@ -53,7 +51,6 @@ function AddQuestion(props) {
   return (
     <div className="Center-panel">
       <Card className={classes.root}>
-        <CardActionArea>
           <CardMedia
             className={classes.media}
             image={"https://image.flaticon.com/icons/png/512/187/187704.png"}
@@ -95,8 +92,6 @@ function AddQuestion(props) {
               </FormControl>
             </form>
           </CardContent>
-        </CardActionArea>
-        <CardActions></CardActions>
       </Card>
     </div>
   );

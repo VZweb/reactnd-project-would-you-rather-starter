@@ -41,6 +41,12 @@ function AnswerQuestion(props) {
     props.handleAddAnswer(qid, answer, loginUser);
   };
 
+  const isButtonDisabled = () => {
+      if (answer) {
+          return false
+      } else return true
+  }
+
   return (
     <div className="Center-panel">
       <Card className={classes.root}>
@@ -78,6 +84,7 @@ function AnswerQuestion(props) {
                   variant="outlined"
                   color="primary"
                   className={classes.button}
+                  disabled={isButtonDisabled()}
                 >
                   Submit
                 </Button>

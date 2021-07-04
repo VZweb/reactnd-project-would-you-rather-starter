@@ -24,8 +24,8 @@ function Leaderboard(props) {
   const classes = useStyles();
 
   const usersArrSorted = Object.values(props.users).sort(function (a, b) {
-    let scoreA = Object.keys(a.answers).length;
-    let scoreB = Object.keys(b.answers).length;
+    let scoreA = Object.keys(a.answers).length + Object.keys(a.questions).length
+    let scoreB = Object.keys(b.answers).length + Object.keys(b.questions).length
     if (scoreA > scoreB) {
       return -1;
     } else if (scoreA < scoreB) {

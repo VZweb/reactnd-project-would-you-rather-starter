@@ -32,7 +32,8 @@ There is a plan of adding new features to the app like adding new user creation 
 
 ## Authors and acknowledgment
 
-A big thank you to Udacity for providing the opportunity to work on a project like this.
+Author: Vasilis Zografou
+It has been an amazing experience so far for me and a big thank you to Udacity for providing the opportunity to work on a project like this.
 
 ## Data
 
